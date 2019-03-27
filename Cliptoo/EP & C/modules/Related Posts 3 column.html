@@ -1,0 +1,249 @@
+﻿<div class="content">
+  <div class="slider responsive">
+    {% for item in module.section %}
+    <div class="item-container">
+      <section class="all-feature-portrait">
+        {% if item.where_you_want_texts == 'IN' %}
+        <article class="card-image right-corner-clip" 
+                 style="{% if item.choose_background == 'BG-image' %} background-image: url({{ item.choose_background_image.src }});
+                        {% elif item.choose_background == 'BG-color' %} background-color:{{ item.choose_background_color.color }}; {% endif %}">
+
+          <a href="{{ item.page_link }}">
+            {% if item.choose_background != "BG-image" %}
+            <h3 class="card-text" style="color:{{ item.choose_text_color }};height:90px">{{ item.heading_text |truncatehtml(35,' ...',false) }}</h3>
+            <div style="text-align:center;">
+              <img src="{{ item.background_icon.src }}" alt="{{ item.background_icon.alt }}" width="100px" height="100px">
+            </div>
+            <div class="specific-button-with-icon" style="top:30px;">
+              <span style="color:{{ item.choose_text_color }};">{{ item.subtitle |truncatehtml(30,' ...',false) }}</span> 
+            </div>
+            {% else %}
+            <h3 class="card-text" style="color:{{ item.choose_text_color }};height:90px">{{ item.heading_text |truncatehtml(35,' ...',false) }}</h3>
+            <div class="specific-button-with-icon">
+              <span style="color:{{ item.choose_text_color }};">{{ item.subtitle |truncatehtml(30,' ...',false) }}</span> 
+            </div>
+            {% endif %}
+          </a>
+        </article>
+
+        {% elif item.where_you_want_texts == 'OUT' %}
+        <article class="card-image right-corner-clip" style="{% if item.choose_background == 'BG-image' %} background-image: url({{ item.choose_background_image.src }});
+                                                             {% elif item.choose_background == 'BG-color' %} background-color:{{ item.choose_background_color.color }}; {% endif %}"> 
+
+          <a href="{{ item.page_link }}">
+            {% if item.choose_background == "BG-color" %}
+            <div style="text-align:center;padding:37% 0;"> 
+              <img src="{{ item.background_icon.src }}" alt="{{ item.background_icon.alt }}" width="100px" height="100px">   
+            </div>
+            {% endif %}
+          </a>
+        </article>
+
+        <a href="{{ item.page_link }}"> <h3 class="card-text" style="color:black; padding-left:0; margin-bottom:0; width:100%;">{{ item.heading_text }}</h3></a>
+        <div class="specific-button-with-icon" style="position:static;">
+          <p style="color:black;">{{ item.subtitle }}</p>
+        </div>
+        {% endif %}
+      </section>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+.responsive.slick-slider {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.slick-slider svg {
+  width: 100px;
+  height: 100px;
+  padding:0 15px;
+  position: relative;
+  cursor:pointer;
+}
+
+.slick-slider svg:first-child {
+  right: 10%;
+}
+
+.slick-slider svg:last-child {
+  left: 10%;
+}
+
+.content {
+  margin: auto;
+  max-width: 1200px;
+  min-width: 300px;
+}
+
+.quote-container {
+  color:white;
+  text-align:center;
+  margin-bottom:30px;
+  position: relative;
+}
+
+.quote-container:hover {
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+.item-container {
+  padding-left: 20px;
+  transform: translateX(-15px);
+}
+.slick-slide img {
+  display:inline !important;
+}
+
+.dragging .quote-container {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+
+@-webkit-keyframes gradient {
+  0% {
+    background-position: 5% 0%;
+  }
+  50% {
+    background-position: 96% 100%;
+  }
+  100% {
+    background-position: 5% 0%;
+  }
+}
+@keyframes gradient {
+  0% {
+    background-position: 5% 0%;
+  }
+  50% {
+    background-position: 96% 100%;
+  }
+  100% {
+    background-position: 5% 0%;
+  }
+}
+
+@media (max-width:1024px) {
+/*   .content{
+    width: 90%;
+  } */
+.slick-slider svg:first-child {
+  right: 2%;
+}
+
+.slick-slider svg:last-child {
+  left: 2%;
+}
+}
+
+@media (max-width:767px){
+  .content{
+    width:100%;
+  }
+  .slick-slider svg {
+    width: 100px;
+  }
+  .slick-slider svg:first-child, .slick-slider svg:last-child {
+    right: unset;
+    left:unset;
+  }
+  .quote-container{
+    display:flex !important;
+    flex-direction:column;
+    width: 90% !important;
+    margin: auto;
+  }
+}
+
+.all-feature-portrait {
+  width:100%;
+  height:300px;
+  min-width: 223px;
+}
+
+.all-feature-portrait .right-corner-clip {
+  -webkit-clip-path: polygon(80% 0, 100% 40px, 100% 100%, 0 100%, 0 0);
+  clip-path: polygon(80% 0, 100% 40px, 100% 100%, 0 100%, 0 0);
+}
+
+/* -------------  BG image section  --------------- */
+.card-image {
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+
+.all-feature-portrait .card-image {
+  width:100%;
+  height:300px;
+}
+
+.all-feature-portrait .card-text {
+  padding-top: 20px;
+  padding-left: 15px;
+  width:80%;
+  line-height:32px;
+}
+
+/*----------------- read more button style --------------*/
+.all-feature-portrait .specific-button-with-icon{
+  position:relative;
+  top: 140px;
+  left:12px;
+  width: calc(100% - 30px);
+}
+
+.all-feature-portrait .specific-button-with-icon span:after{
+  content:' ►';
+}
+@media (max-width:767px){
+  .all-feature-portrait{
+    margin: 30px auto;
+    width:220px;
+    float: none;
+  }
+}
+</style>
+
+<script>
+
+$('.responsive').slick({
+  infinite: true,
+  arrow:false,
+  prevArrow: '<svg aria-hidden="true" data-prefix="far" data-icon="angle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" class="svg-inline--fa fa-angle-left fa-w-6 fa-5x"><path fill="currentColor" d="M4.2 247.5L151 99.5c4.7-4.7 12.3-4.7 17 0l19.8 19.8c4.7 4.7 4.7 12.3 0 17L69.3 256l118.5 119.7c4.7 4.7 4.7 12.3 0 17L168 412.5c-4.7 4.7-12.3 4.7-17 0L4.2 264.5c-4.7-4.7-4.7-12.3 0-17z" class=""></path></svg>',
+  nextArrow: '<svg aria-hidden="true" data-prefix="far" data-icon="angle-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" class="svg-inline--fa fa-angle-right fa-w-6 fa-3x"><path fill="currentColor" d="M187.8 264.5L41 412.5c-4.7 4.7-12.3 4.7-17 0L4.2 392.7c-4.7-4.7-4.7-12.3 0-17L122.7 256 4.2 136.3c-4.7-4.7-4.7-12.3 0-17L24 99.5c4.7-4.7 12.3-4.7 17 0l146.8 148c4.7 4.7 4.7 12.3 0 17z" class=""></path></svg>',
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  speed: 500,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        
+      }
+    },
+    {
+      breakpoint: 676,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    },
+  ]
+});
+
+// put this in PREVARROW svg if you want back button
+// <path fill="currentColor" d="M4.2 247.5L151 99.5c4.7-4.7 12.3-4.7 17 0l19.8 19.8c4.7 4.7 4.7 12.3 0 17L69.3 256l118.5 119.7c4.7 4.7 4.7 12.3 0 17L168 412.5c-4.7 4.7-12.3 4.7-17 0L4.2 264.5c-4.7-4.7-4.7-12.3 0-17z" class=""></path>
+</script>

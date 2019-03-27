@@ -1,0 +1,202 @@
+﻿<div class="remake-banner content-wrapper">
+  <div class="main-grid">
+    <div class="left block1-text">
+      {% rich_text field="box_1" value="{{ module.box_1 }}" %}
+    </div>
+    <div class="right">
+      <div class="hr-boxes">
+        <div class="box box-1">
+          {{ module.box_2 }}
+        </div>
+        <div class="box box-2">
+          {{ module.box_3 }}
+        </div>
+      </div>
+      <div class="sub-grid">
+        <div class="left">
+          <div class="box">
+            {{ module.box_6 }}
+          </div>
+          <div class="box">
+            {{ module.box_7 }}
+          </div>
+          <div class="box">
+            {{ module.box_8 }}
+          </div>
+        </div>
+      </div>
+      <div class="hr-boxes">
+        <div class="box box-1">
+          {{ module.box_4 }}
+        </div>
+        <div class="box box-2">
+          {{ module.box_5 }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+.remake-banner a {
+  font-size: 24px;
+  font-weight: bold;
+  margin: auto;
+  display: inline-block;
+  text-align: left;
+  padding: 10px 20px;
+  vertical-align: middle;
+  line-height: normal;
+  color: #fff;
+  -webkit-transition: color 0.1s ease-in;
+  -o-transition: color 0.1s ease-in;
+  transition: color 0.1s ease-in;
+}
+
+.remake-banner a:hover {
+  color: #f2a428; 
+}
+
+.main-grid>.left {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 35px 20px 28px 20px;
+}
+/* .main-grid .left h2 {
+font-size: 56px;
+letter-spacing: -1px;
+word-spacing: -3px;
+margin: 15px 0;
+line-height: 56px; 
+}
+
+.main-grid .left p {
+font-weight: 500;
+font-size: 23px;
+margin: 3px;
+word-spacing: -1px;
+line-height: 28px; 
+} */
+
+/* .main-grid .left {
+display: flex;
+justify-content: center;
+align-items: center;
+}
+*/
+
+.main-grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 5px 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 5px;
+}
+
+.main-grid>.right {
+  display: -ms-grid;
+  display: grid;
+  grid-row-gap: 5px;
+}
+
+.main-grid>.right .hr-boxes {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 5px 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 5px;
+}
+
+.box {
+  background-color: rgba(0, 0, 0, 0.6);
+  display: -ms-inline-grid;
+  display: inline-grid;
+  -webkit-box-pack: left;
+  -webkit-justify-content: left;
+  -ms-flex-pack: left;
+  -moz-box-pack: left;
+  justify-content: left;
+  word-break: break-word;
+}
+
+.sub-grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto 5px;
+  grid-template-columns: auto;
+  grid-column-gap: 5px;
+}
+
+.sub-grid>.left {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 5px 1fr 5px 1fr;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 5px;
+}
+
+.sub-grid>.right {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 5px 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 5px;
+}
+.hidden-box {
+  visibility: hidden; 
+}
+
+@media screen and (max-width: 1200px)  {
+  .remake-banner {
+    padding: 0 15px;
+    word-break: break-word;
+  }
+  .main-grid {
+    -ms-grid-columns: 1fr;
+    grid-template-columns: 1fr; 
+  }
+  .box {
+    padding: 10px 0;   
+  }
+  .main-grid>.right>div:nth-child(2) {
+    -webkit-box-ordinal-group:4;
+    -ms-flex-order:3;
+    order:3;
+  }
+  .main-grid>.right>div:nth-child(3) {
+    -webkit-box-ordinal-group:3;
+    -ms-flex-order:2;
+    order:2
+  }
+  .sub-grid {
+    -ms-grid-columns: 1fr;
+    grid-template-columns: 1fr;
+  }
+  .sub-grid>.left {
+    -ms-grid-columns: (1fr)[2];
+    grid-template-columns: repeat(2, 1fr); 
+  }
+  .sub-grid>.left>.box:last-child {
+    grid-column: 1/3;
+  }
+  .sub-grid>.right {
+    -ms-grid-columns: 1fr;
+    grid-template-columns: 1fr;
+  }
+  .hidden-box {
+    display: none; 
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .content-wrapper .block1-text {
+    min-height: 250px; 
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .remake-banner a {
+    font-size: 14.4px;  
+  }
+}
+
+</style>

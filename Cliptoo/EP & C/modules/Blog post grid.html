@@ -1,0 +1,145 @@
+﻿{% set posts = contents %}
+<div class="latest-blog-container" id="blog-articles">
+{% for post in posts %} 
+  {% if loop.index % 9 == 1 or loop.index % 9 == 2 or loop.index % 9 == 3 or loop.index % 9 == 6 or loop.index % 9 == 0 %}
+      <div class="potrait blog-post latest-blog__post-container-{{ loop.index }}">
+        <a href="{{ post.absolute_url }}">
+          <div class="blog-heading-potrait">
+          <h3>{{ post.name }}</h3>
+          <div class="specific-button-with-icon"><span>LEES VERDER</span></div>
+          </div>
+        </a>
+      </div>
+  
+  {% elif loop.index % 9 == 4 or loop.index % 9 == 5 %}
+      <div class="landscape blog-post latest-blog__post-container-{{ loop.index }}">
+        <a href="{{ post.absolute_url }}">
+          <div class="blog-heading-landscape">
+            <h3>{{ post.name }}</h3>
+               <div class="specific-button-with-icon"><span>LEES VERDER</span></div>
+          </div>
+        </a>
+      </div>
+  
+  {% elif loop.index % 9 == 7 or loop.index % 9 == 8 %}
+      <div class="landscape-wider blog-post latest-blog__post-container-{{ loop.index }}">
+        <a href="{{ post.absolute_url }}">
+          <div class="blog-heading-wider">
+            <h3>{{ post.name }}</h3>
+            <div class="specific-button-with-icon">LEES VERDER</div>
+          </div>
+        </a>
+      </div>
+  {% endif %}
+  
+<style>
+.latest-blog__post-container-{{ loop.index }}{
+      background-color:{{ module.choose_the_background_color.color }};
+      background-image:url({{ post.featured_image }});
+      background-size:cover;
+      background-repeat:no-repeat;
+      max-height:300px;
+    } 
+</style>
+{% endfor %}
+</div>
+
+<style>
+  .latest-blog-container a{
+    color:{{ module.choose_the_color }};
+  }
+.latest-blog-container .specific-button-with-icon {
+  position: relative;
+  top: -40px;
+  width:75%;
+  padding-left:10px;
+}
+
+
+@media (min-width:1425px){
+  .latest-blog-container h3{
+    min-height:300px;
+  }
+}
+</style>
+
+<script>
+// We need to keep track of the last loaded page.
+// We'll declare the variable to start at page 2,
+// because the first load of posts will be of the second page
+var currentPage = 2;
+ 
+// We also need to make sure that we have a variable
+// telling us if the last page we loaded was empty
+var blogOutOfPosts = false;
+
+// We need to know if we're already fetching
+// so that we dont load duplicate content
+var fetching = false;
+
+// Using jQuery we'll save the containing element for future reference
+var postContainer = $("#blog-articles");
+
+// We add an event listener for when the page is scrolled
+$(window).scroll(function()
+{
+  // If we're out of posts or already fetching,
+  // escape this function and do nothing
+  if(blogOutOfPosts || fetching)
+    return;
+ 
+ 
+  // The current offset scrolled from the top
+  var windowScroll = $(this).scrollTop();
+ 
+  // The browser window height
+  var windowHeight = $(this).height();
+ 
+  // The offset of the post container
+  var postContainerOffset = postContainer.offset().top;
+ 
+  // The height of the post container
+  var postContainerHeight = postContainer.height();
+ 
+  // This line is the bottom of the browser window when scrolled
+  var scrollLine = windowScroll + windowHeight;
+ 
+  // The bottom line of the blog listing
+  var scrollTarget = postContainerOffset + postContainerHeight;
+ 
+  // If the scrolling line is bigger than the target
+  if(scrollLine >= scrollTarget)
+  {
+    // Set fetching to true to ensure that we pause the ajax
+    fetching = true;
+    var ajaxUrl = "/test-blog-2/page/"+currentPage;
+    $.get(ajaxUrl, function(data)
+    {
+      // Create a jQuery element of the response
+      var page = $(data);
+ 
+      // Extract the blog posts
+      var posts = page.find('.blog-post');
+ 
+      // There were no posts
+      if(posts.length == 0)
+      {
+        blogOutOfPosts = true;
+        return;
+      }
+ 
+      posts.each(function()
+      {
+        var blogPost = $(this);
+        postContainer.append(blogPost);
+      });
+      
+      setTimeout(function(){
+        currentPage += 1;
+        fetching = false;
+      }, 100);
+ 
+    });
+  }
+});
+</script>

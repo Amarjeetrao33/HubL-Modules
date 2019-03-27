@@ -1,0 +1,21 @@
+﻿<div class="general-button-with-icon">
+  <a style="color:{{ module.choose_the_color }};" href="{{ module.url_link }}">{{ module.url_text }}
+    <span class="icon-container">
+      <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+           x="0px" y="0px" viewBox="0 0 46 46" style="enable-background: new 0 0 46 46; fill: {{ module.choose_the_color }};" xml:space="preserve">
+        <g><polygon class="st0" points="3,0 3,46 43,23"></polygon></g></svg>
+    </span>
+  </a>
+</div>
+
+<style>
+  .general-button-with-icon a, .icon-container svg{
+    color:{{ module.choose_the_color }};
+    fill:{{ module.choose_the_color }};
+  }
+@media (max-width:767px){
+.general-button-with-icon{
+	text-align:center;
+  }
+}
+</style>

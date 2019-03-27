@@ -1,0 +1,42 @@
+﻿<section class="tags-section">
+  {% for item in module.tags %}
+  <form action = "{{ item.tag_url }}">
+    <input type="submit" name="{{ item.tag }}" value="{{ item.tag }}">    
+  </form>
+  {% endfor %}
+</section>
+
+<style>
+.tags-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.tags-section form {
+  margin-left: 30px;
+  margin-bottom: 42px;
+}
+
+.tags-section form:first-child {
+  margin-left: 0;
+}
+
+.tags-section form > input {
+  background-color: #00a351;
+  color:#fff; 
+  transition:all 250ms;
+}
+
+.tags-section form:hover > input {
+  background-color: transparent;
+  color:#00a351;
+}
+
+</style>

@@ -1,0 +1,81 @@
+﻿<div id="carousel">
+  <carousel-3d :autoplay="true" :autoplay-timeout="5000" :controls-visible="true"> 
+      {% for item in module.section %}
+        <slide :index="{{ loop.index - 1 }}">
+      {% if item.image.src %}
+        <img src="{{ item.image.src }}" alt="{{ item.image.alt }}" width="100%" height="272px">
+      {% endif %}
+       <a class="specialisation-button-carousel button-80" href="{{ item.button_url }}">{{ item.button_text }}</a>
+          </slide>
+    {% endfor %}  
+  </carousel-3d>
+</div>
+
+<style>
+#carousel img{
+	height:272px !important;
+}
+.carousel-3d-container{
+	max-width:1024px;
+}
+.carousel-3d-slide{
+  border-width: 0px !important;
+}
+.specialisation-button-carousel {
+  font-size: 1.1vw;
+  background: #0bc0d3;
+  color: #fff;
+  border: 1px solid #0bc0d3;
+  padding: 10px 0px;
+  display: none;
+  text-align: center;
+}
+
+.specialisation-button-carousel:hover {
+  background: #fff;
+  color: #0bc0d3;
+}
+
+.button-80{
+  	width:80% !important;
+  	position: relative;
+  	left: 50%;
+  	bottom:70px;
+    transform: translateX(-50%);
+}
+.current a.specialisation-button-carousel{
+	display:block !important;
+}
+.next[data-v-43e93932], .prev[data-v-43e93932]{
+	font-size:90px !important;
+  color:#4a4a4a; !important;
+}
+@media (max-width:567px){
+.carousel-3d-slider,.current{
+	width:100% !important;
+  }
+}
+@media (max-width:360px){
+  .button-80 {
+    bottom: 80px;
+}
+}
+
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.7/vue.js">
+</script>
+<script src="https://rawgit.com/Wlada/vue-carousel-3d/master/dist/vue-carousel-3d.min.js">
+</script>
+
+<script>
+new Vue({
+  el: '#carousel',
+  data: {
+    slides: 7
+  },
+  components: {
+    'carousel-3d': Carousel3d.Carousel3d,
+    'slide': Carousel3d.Slide
+  }
+})
+</script>

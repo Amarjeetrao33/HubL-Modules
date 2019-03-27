@@ -1,0 +1,205 @@
+﻿<div class="content">
+  <div class="slider single-item">
+   {% for item in module.sections %}
+			<div class="quote-container">
+        {% if item.image.src %}
+          <div class="portrait octagon"><img src="{{ item.image.src }}" alt="{{ item.image.alt }}" width="{{ item.image.width }}" height="{{ item.image.height }}">
+        {% endif %}
+          </div>
+        <div class="quote">
+        {% inline_rich_text field="testimonial" value="{{ item.testimonial }}" %}
+        </div>
+			</div>
+{% endfor %}
+  </div>
+</div>
+
+<style>
+.content {
+  background: #0bc0d3;
+  margin: auto;
+  padding: 10px;
+  width: 60%;
+  max-width: 1200px;
+  min-width: 300px;
+}
+
+.slick-slider {
+  margin: 10px auto 20px;
+}
+
+.slick-prev,
+.slick-next {
+  color: #fff;
+  opacity: 1;
+  height: 40px;
+  width: 40px;
+  margin-top: -20px;
+}
+.slick-prev path,
+.slick-next path {
+  fill: rgba(255, 255, 255, 0.4);
+}
+.slick-prev:hover path,
+.slick-next:hover path {
+  fill: #9b9b9b;
+}
+
+.slick-prev {
+  left: -35px;
+}
+
+.slick-next {
+  right: -35px;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  content: none;
+}
+
+.slick-dots li button:before {
+  color: rgba(255, 255, 255, 0.4);
+  opacity: 1;
+  font-size: 8px;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #ffffff;
+}
+
+.quote-container {
+  min-height: 200px;
+  color: #666666;
+  font-size: 15px;
+  margin: 0 20px;
+  position: relative;
+}
+.quote-container:hover {
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+.quote-container .portrait {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 140px;
+  width: 140px;
+  overflow: hidden;
+}
+.quote-container .portrait img {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+.quote-container .quote {
+  position: relative;
+  z-index: 600;
+  padding: 20px 0 20px 180px;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.4 !important;
+  color: white;
+}
+.quote-container .quote p {
+  position: relative;
+}
+
+.dragging .quote-container {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+
+@-webkit-keyframes gradient {
+  0% {
+    background-position: 5% 0%;
+  }
+  50% {
+    background-position: 96% 100%;
+  }
+  100% {
+    background-position: 5% 0%;
+  }
+}
+@keyframes gradient {
+  0% {
+    background-position: 5% 0%;
+  }
+  50% {
+    background-position: 96% 100%;
+  }
+  100% {
+    background-position: 5% 0%;
+  }
+}
+@media (max-width:768px){
+  .content{
+  	width:80%;
+  }
+}
+
+@media (max-width:567px){
+  .content{
+  	width:100%;
+  }
+  .quote-container{
+  	display:flex !important;
+    flex-direction:column;
+  }
+  .portrait, .octagon, .quote{
+  	position:static !important;
+    margin-top:20px !important;
+  }
+  .quote{
+    padding: 0 !important;
+  }
+  
+}
+button::before{
+	display:none !important
+}
+button.slick-arrow{
+	position:absolute;
+  bottom:-30px;
+  border:none;
+}
+button.slick-arrow:hover{
+	background-color:transparent;
+}
+.slick-arrow svg{
+		position: absolute !important;
+    left: 5px;
+    top: 5px;
+  	transform:scale(2.5);
+}
+.slick-arrow svg path{
+  	fill:#4a4a4a;
+}
+.slick-dots{
+	display:none !important;
+}
+</style>
+
+<script>
+var prevButton = '<button type="button" data-role="none" class="slick-prev" aria-label="prev"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" version="1.1"><path fill="#FFFFFF" d="M 16,16.46 11.415,11.875 16,7.29 14.585,5.875 l -6,6 6,6 z" /></svg></button>',
+    nextButton = '<button type="button" data-role="none" class="slick-next" aria-label="next"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#FFFFFF" d="M8.585 16.46l4.585-4.585-4.585-4.585 1.415-1.415 6 6-6 6z"></path></svg></button>';
+
+$('.single-item').slick({
+  infinite: true,
+  dots: true,
+  autoplay: true,
+  autoplaySpeed: 7000,
+  speed: 1000,
+  cssEase: 'ease-in-out',
+  prevArrow: prevButton,
+  nextArrow: nextButton
+});
+
+$('.quote-container').mousedown(function(){
+  $('.single-item').addClass('dragging');
+});
+$('.quote-container').mouseup(function(){
+  $('.single-item').removeClass('dragging');
+});
+</script>

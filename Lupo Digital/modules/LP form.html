@@ -1,0 +1,19 @@
+﻿<div class="LP-form">
+{% form
+	form_to_use="{{ module.form_field.form_id }}"
+	response_response_type="{{ module.form_field.response_type }}"
+	response_message="{{ module.form_field.message }}"
+	response_redirect_id="{{ module.form_field.redirect_id }}"
+	response_redirect_url="{{module.form_field.redirect_url}}"
+	gotowebinar_webinar_key="{{ module.module.form_field.gotowebinar_webinar_key }}"
+%}
+</div>
+
+<style>
+.LP-form{
+	width:25%;
+}
+.hs-input[required] {
+    border: 1px solid red;
+}
+</style>

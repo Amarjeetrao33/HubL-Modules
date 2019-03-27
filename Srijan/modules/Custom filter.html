@@ -1,0 +1,40 @@
+<div class='dom' style="padding:30px 0">
+
+  <button id=dropdown>
+
+    Topics
+
+    <i></i>
+
+  </button>
+
+  {% post_filter select_blog='{{ module.blog_id }}', max_links= 10, filter_type='tag', order_by='{{ post_count }}' %}
+
+</div>
+
+<script>
+// note - replace article with your cards or blogs section html tag or css class
+
+$(document).ready(function(){
+  
+  // dropdown slider for small screen
+   
+  $('#dropdown').on('click', function () {                    
+
+    $('.dom .block').slideToggle();
+
+  });
+
+  $(document).on("click", function(event){
+
+    var $trigger = $("#dropdown");
+
+    if(event.target == $trigger){
+
+      $(".dom .block").slideUp("fast");
+
+    }            
+
+  });
+});
+</script>

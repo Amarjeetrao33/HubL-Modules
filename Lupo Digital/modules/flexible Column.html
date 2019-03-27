@@ -1,0 +1,232 @@
+﻿<!-- descriptions -->
+<div class='main-desc'>
+{% for item in module.columns %}
+  {% if loop.index == 1 %}
+  	<div id="{{ loop.index }}" class='desc active'>
+  {% else %}
+    <div id="{{ loop.index }}" class='desc'>
+  {% endif %}
+    <div class="accordion">
+      <div class="accordion-text">
+        {% inline_rich_text field="description" value="{{ item.description }}" %}
+      </div>
+  	</div>
+  </div>
+{% endfor %}
+</div>
+
+<!-- columns -->
+<div class='main'>
+ <div class='main-post'>
+ 	{% for item in module.columns %}
+   {% if loop.index == 1 %}
+  	<div class='post active'>
+  {% else %}
+    <div class='post'>
+  {% endif %}
+      <div mark="{{ loop.index }}" class="specialisation">
+           <a href="#{{ loop.index }}"><img src="{{ item.image.src }}" alt="{{ item.image.alt }}" width="100%" height="auto"></a>
+          <a class="specialisation-button" href="#{{ loop.index }}">{{ item.title }}</a>
+       </div>
+    </div>
+	{% endfor %} 
+ </div>
+</div>
+
+<style>
+.main-desc {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+} 
+
+.main {
+	display: flex;
+  justify-content: center;
+}
+
+.main-post {
+  width: 83.33%;
+  display: flex;
+}
+
+.main-post .post {
+	display: inline-flex;
+  padding: 0 10px;
+}
+
+.desc {
+	display: none;
+  width: 83.33%;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.desc.active {
+  display: block;
+}
+.specialisation{
+  margin-top: 20px;
+}
+.specialisation img{
+	margin-bottom:1.5%;
+}
+
+.specialisation-button {
+  font-size: 18px;
+  background: #0bc0d3;
+  color: #fff;
+  border: 1px solid #0bc0d3;
+  padding: 10px 0px;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  min-height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.specialisation-button:hover {
+  background: #fff;
+  color: #0bc0d3;
+}
+
+
+@media (min-width: 1280px){
+.specialisation-button {
+  font-size: 15px;
+  }
+}
+
+@media (min-width: 567px){
+.main-post .post .specialisation {
+	opacity:0.4;
+} 
+
+.main-post .post.active .specialisation {
+	opacity: 1;
+}
+}
+
+@media screen and (max-width: 767px){
+.specialisation {
+  width: 60%;
+  margin: 20px auto 0 auto;
+  float: none;
+  }
+  .specialisation-button {
+  font-size: 15px;
+  }
+  .specialisation-button:hover {
+  background: #0bc0d3;
+  color: #fff;
+}
+}
+.accordion{
+	width:100%;
+  max-height:250px;
+  margin-top:20px;
+  background-color:#0bc0d3;
+  animation-name: slide-left;
+  animation-duration: 0.5s;
+  animation-timing-function: ease;
+}
+.accordion-text{
+    margin: auto;
+    width: 80%;
+    color: white;
+    height: 150px;
+    padding: 30px 0;
+}
+
+@keyframes slide-left {
+ from {width: 0%;}
+    to {width: 100%;}
+}
+
+@keyframes slide-right {
+ from {width: 100%;}
+    to {width: 0%;} 
+}
+
+@media only screen and (max-width:480px) {
+ 	 .main-post {
+  	display: block;
+    width: 80%;
+  }
+  .desc {
+		width: 100%;
+  }
+  
+  .specialisation {
+   	width: 100%; 
+  }
+  
+  .accordion-text {
+		height: auto;
+    padding: 4% 0 5% 0;
+  }
+  
+  .accordion-text p {
+		margin: 0;
+  }
+  
+  .desc.active {
+   	display: none; 
+  }
+  
+  .main-post .post {
+  	display: block;
+  }
+  
+}
+</style>
+
+<script>
+(function (window) {
+  	var mediaQuery = window.matchMedia('(max-width: 480px)');
+	mediaQuery.addListener(showDesc);
+	
+	function showDesc(mediaQuery) {
+    
+    
+		//mobile 
+		if (mediaQuery.matches) {
+      //remove desktop click events
+      $('.specialisation a').off();
+      
+			$('.specialisation a').on('click', function() {
+		      var check = $(this).parent().siblings('.accordion');
+        
+		      if(check.length) {
+		        $('.main-post .post .accordion').animate({
+		          width:'0%'
+		        }, 500, function() {
+		          $('.main-post .post .accordion').remove();
+		        }.bind(this));
+		        
+		      } else {
+		        $('.main-post .post .accordion').remove();
+		        var desc = $(this).attr('href');
+		        var html = $('.desc'+desc).html();
+		        $(this).parents('.post').append(html);
+		      }
+		    });
+		} else {
+      //remove mobile click events
+      $('.specialisation a').off();
+      //remove appended data for mobile view
+      $(".main-post .post .accordion").remove()
+			  //desktop
+			  $('.specialisation a').on('click', function() {
+          $('.post').removeClass('active');
+          $(this).parents('.post').addClass('active');
+			    $('.main-desc .desc').removeClass('active');
+			    var desc = $(this).attr('href');
+			    $(".desc"+desc).addClass('active');
+			  })
+		}
+	}
+	showDesc(mediaQuery);
+})(window);
+</script>

@@ -1,0 +1,63 @@
+﻿<section class="news-insights">
+  <div class="news-container">
+    <a href="{{ module.insights.insights_link }}">
+      <div class="insights" style="background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url({{ module.insights.insight_image.src }});">
+        <div class="text">
+          <h2>{{ module.insights.insights_heading }}</h2>
+          {% inline_rich_text field="insights.insights_text" value="{{ module.insights.insights_text }}" %}
+        </div>
+      </div>
+    </a>
+    <a href="{{ module.news.news_link }}">
+      <div class="news" style="background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url({{ module.news.news_image.src }});">
+        <div class="text">
+          <h2>{{ module.news.news_heading }}</h2>
+          {% inline_rich_text field="news.news_text" value="{{ module.news.news_text }}" %}
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+<style>
+.news-container {
+  width:100%;
+}
+
+.news-container .text {
+  padding:55px 20px;
+}
+
+.news-container h2,
+.news-container h3 {
+  margin:0;
+  padding-bottom:10px;
+  color:white;
+}
+.news-container .insights {
+  margin-bottom:5px;
+}
+.news-container .insights,
+.news-container .news {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: 0.2s ease-in-out;
+}
+
+@media screen and (min-width:1200px) {
+  .news-container .insights:hover,
+  .news-container .news:hover {
+    transform:scale(1.01);
+    -webkit-box-shadow: 0 0 30px 1px rgba(0,0,0,0.2);
+    box-shadow: 0 0 30px 1px rgba(0,0,0,0.2);
+  }
+  
+  .news-container .insights:hover h2,
+  .news-container .news:hover h2,
+  .news-container .insights:hover h3,
+  .news-container .news:hover h3{
+   color:#f2a428;
+  }
+}
+
+</style>

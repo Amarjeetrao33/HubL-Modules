@@ -1,0 +1,118 @@
+﻿{% set primary_lang = module.primary_language|split(',') %}
+{% set primary_lang_url = primary_lang[0] %}
+{% if primary_lang_url == group.absolute_url %}
+	{% set current_lang = primary_lang[1] %}
+{% else %}
+	{% set url_path_parts = request.path|split('/') %}
+	{% set current_lang = url_path_parts[0] %}
+{% endif %}
+	{% if group.id %}
+		<div id="lang_switcher_container">
+      <div class="lang_switcher_class" id="custom_lang_switcher">
+        <div class="globe_class">
+          <ul class="lang_list_class">
+            {% if content_id %} {# If you are in a blog post: #}
+              {% set tran_list = [] %} 
+              {% for item in module.post_translations %}
+                {% if item.translated_post_url_path %}
+                  {{ tran_list.append(item.translated_post_language)|replace(true,'') }} {# 'tran_list' is a list of the language prefixes for translations that have been set on the current post #}
+                {% endif %}
+              {% endfor %}
+            {{module.blog_languages}}
+              
+            {% set lang_list = module.blog_languages|replace(' ','')|split(',') %}
+              {% for lang in lang_list %} {# Loop through the language prefixes provided in the 'Blog Languages' field on the module #} 
+
+                {% set pair = lang|replace(' ','')|split(':') %} {# and store each part into its own variable: #}
+            		{% set pair2 = pair[1]|replace(' ','')|split('|') %}
+                {% set language_name = pair[2]|title %}
+                {% set language_prefix = pair2[1] %}
+            		{% set blog_listing = pair2[0] %}
+                {% if language_prefix in tran_list and module.translate_posts %} {# if the current language prefix is in the list of available translations: #}
+                  {% for item in module.post_translations %}
+                    {% if item.translated_post_language == language_prefix %} {# find the translation to match the current language prefix and build a nav item linking directly to the post #}
+            					{% if item.override_default_language_name %}
+            						{% set language_name = item.language_name %}
+											{% endif %}
+            					<li><a class="lang_switcher_link rel_lang" data-language="{{language_prefix}}" href="{{blog_listing}}{{ item.translated_post_url_path }}" data-url="{{blog_listing}}{{ item.translated_post_url_path }}">{{language_name}}</a></li>
+                    {% endif %}
+                  {% endfor %}
+                {% elif language_prefix == current_lang %} {# if the current language prefix is the current language of the page, build a nav item that links to the page you are on #}
+                  <li ><a id="current_lang" class="lang_switcher_link current_lang rel_lang  testing" data-language="{{language_prefix}}" href="javascript:;" data-url="{{request.full_url}}" onclick="return false;">{{language_name}}</a></li>
+                {% else %} {# if the current language prefix has no available translation, link to the blog listing of the corresponding translation #}
+                  <li><a class="lang_switcher_link" data-language="{{language_prefix}}" data-url="{{blog_listing}}" href="{{blog_listing}}">{{language_name}}</a></li>
+                {% endif %}	
+              {% endfor %}
+            {% else %} {# If you are not in a blog post: #}
+            	{% set lang_list = module.blog_languages|replace(' ','')|split(',') %}
+              {% for lang in lang_list %} {# Loop through the language prefixes provided in the 'Blog Languages' field on the module #} 
+                {% set pair = lang|replace(' ','')|split(':') %} {# and store each part into its own variable: #}
+            		{% set pair2 = pair[1]|replace(' ','')|split('|') %}
+                {% set language_name = pair[2]|title %}
+                {% set language_prefix = pair2[1] %}
+            		{% set blog_listing = pair2[0] %}
+                {% if language_prefix == current_lang %} {# if the current language prefix is the current language of the page #}
+                	<li  data-test="{{language_prefix}}"><a id="current_lang" class="lang_switcher_link current_lang rel_lang testing" data-language="{{language_prefix}}" href="javascript:;" data-url="{{blog_listing}}" onclick="return false;">{{language_name}}</a></li>
+                {% elif '/tag/' in request.full_url %}
+            			<li><a class="lang_switcher_link rel_lang" data-language="{{language_prefix}}" href="{{blog_listing}}">{{language_name}}</a></li>	
+            		{% else %}
+                	<li><a class="lang_switcher_link rel_lang" data-language="{{language_prefix}}" href="{{request.full_url|replace(group.absolute_url,blog_listing)}}" data-url="{{request.full_url|replace(group.absolute_url,blog_listing)}}">{{language_name}}</a></li>	
+                {% endif %}
+            	{% endfor %}
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+		</div>
+	{% endif %}
+<style>
+.lang_list_class {
+  transform: translateX(-85%) !important;
+}
+@media (max-width:768px) {
+  .lang_list_class {
+   transform: translateX(-55%) !important;
+  }
+}
+</style>
+
+<script>
+function loadBlogLangSwitcher(){
+  if (document.querySelector('.lang_switcher_class').getAttribute('id') == "custom_lang_switcher") { 
+    var current_lang = document.getElementById('current_lang').getAttribute('data-language');
+    var current_url = document.getElementById('current_lang').getAttribute('data-url');
+    var test = document.getElementById('current_lang').getAttribute('data-test');
+    function setAttributes(el, attrs) {
+  		for(var key in attrs) {
+   		  el.setAttribute(key, attrs[key]);
+  		}
+		}
+    var rel_links = Array.from(document.querySelectorAll('.lang_switcher_link.rel_lang'));
+    for(l = 0; l < rel_links.length; l ++){
+    	var this_rel_link = document.createElement('link');
+    	setAttributes(this_rel_link, {
+      "rel": "alternate",
+    	"href-lang":rel_links[l].dataset.language,
+      "href": rel_links[l].dataset.url
+    	});
+			document.head.append(this_rel_link);
+    };
+		document.getElementsByTagName('html')[0].setAttribute('lang', current_lang);
+    document.getElementsByTagName('html')[0].setAttribute('test', test);
+    
+    document.querySelector('meta[http-equiv="content-language"]').setAttribute('content', current_lang);
+  	setTimeout(function(){
+      var lang_switchers = Array.from(document.querySelectorAll('span.hs_cos_wrapper_type_language_switcher'));
+      for(b = 0; b < lang_switchers.length; b ++) {
+      	var blog_links = document.querySelector('.lang_switcher_class').cloneNode(true);
+        lang_switchers[b].setAttribute('id','blogLangSwitcher'+(b+1).toString());
+        lang_switchers[b].appendChild(blog_links); 
+	}   
+      document.getElementById('lang_switcher_container').remove();
+      }, 100);
+  };
+};
+loadBlogLangSwitcher();
+// current language style
+//
+</script>

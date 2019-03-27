@@ -1,0 +1,114 @@
+﻿<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<style type="text/css" data-hse-inline-css="true">
+  html,
+  body,
+  p, 
+  p > span, 
+  div > span {
+    font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+    font-weight: normal;
+    color: #333;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+  }
+  h1,
+  h2 {
+    font-weight: 300;
+  }
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 300;
+  }
+  h1 {
+    font-size: 32px;
+  }
+  h2 {
+    font-size: 28px;
+  }
+  h3 {
+    font-size: 24px;
+  }
+  h4 {
+    font-size: 18px;
+  }
+  a {
+    color: #782521;
+    text-decoration: none;
+  }
+  img {
+    max-width: 100% !important;
+  }
+  #contentTableOuter, td#contentCell {
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    border-bottom: none !important;
+  }
+
+  .email-footer p {
+    margin: 0;
+    margin-bottom: 5px !important;
+  }
+  .email-image {
+    margin-top:-5px !important;
+  }
+  .email-image td,
+  .email-image img {
+    padding: 0 !important;
+  }
+  .grid td.column > .content{
+    padding:30px !important;;
+  }
+
+  @media only screen and (max-width: 480px) {
+    .social-media,
+    .logo {
+      text-align: center !important;
+      padding-bottom: 10px !important;
+    }
+    td.column.blog-text td.column {
+      padding: 15px !important;
+      width: 90% !important;
+    }
+    td.columnContent {
+      padding: 15px !important;
+      padding-top: 5px !important;
+    }
+    .grid td.column {
+      max-width:100% !important;
+    }
+    .grid td.column img {
+      width:100% !important;
+      max-width:100% !important;      
+    }
+    .email-image,
+    .email-image .columnContent {
+      padding: 0 !important;
+      padding-top: 0 !important;
+    }
+    .email-footer .email-address {
+      padding-top: 30px !important;
+    }
+    i.fab {
+      margin: 0 !important;
+    }
+  }
+  @media screen and (max-device-width: 650px) {
+    .full-lr {
+      width: 100% !important;
+      max-width: 100% !important;
+      display: block !important;
+    }
+    img {
+      width: unset !important;
+    }
+  }
+</style>

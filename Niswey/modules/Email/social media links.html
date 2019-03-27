@@ -1,0 +1,13 @@
+﻿<table align="center">
+  <tr>
+    {% for item in module.social_icons %}
+    {% if item.social_icon.src %}
+    <td valign="middle" align="center" style="height: {{ module.icon_size }}px;margin-right:5px; text-align: center; width: {{ module.icon_size }}px;">
+      <a href="{{ item.links }}" border="0" style="border: none;">
+        <img src="{{ item.social_icon.src }}" alt="{{ item.social_icon.alt }}" width="{{ module.icon_size }}px" height="{{ module.icon_size }}px" style="max-width:{{ module.icon_size }}px !important">
+      </a>
+    </td> 
+    {% endif %}
+    {% endfor %}
+  </tr>
+</table>

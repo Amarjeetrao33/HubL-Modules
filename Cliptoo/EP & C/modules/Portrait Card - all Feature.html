@@ -1,0 +1,100 @@
+﻿<section class="all-feature-portrait">
+  {% if module.where_you_want_texts == 'IN' %}
+    <article class="card-image right-corner-clip" 
+             style="{% if module.choose_background == 'BG-image' %} background-image: url({{ module.choose_background_image.src }});
+                    {% elif module.choose_background == 'BG-color' %} background-color:{{ module.choose_background_color.color }}; {% endif %}">
+      
+      <a href="{{ module.page_link }}">
+        {% if module.choose_background != "BG-image" %}
+        <h3 class="card-text" style="color:{{ module.choose_text_color }};height:90px">{{ module.heading_text |truncatehtml(35,' ...',false) }}</h3>
+          <div style="text-align:center;">
+              <img src="{{ module.background_icon.src }}" alt="{{ module.background_icon.alt }}" width="100px" height="100px">
+          </div>
+          <div class="specific-button-with-icon" style="top:30px;">
+              <span style="color:{{ module.choose_text_color }};">{{ module.subtitle |truncatehtml(30,' ...',false) }}</span> 
+          </div>
+        {% else %}
+         <h3 class="card-text" style="color:{{ module.choose_text_color }};height:90px">{{ module.heading_text |truncatehtml(35,' ...',false) }}</h3>
+          <div class="specific-button-with-icon">
+              <span style="color:{{ module.choose_text_color }};">{{ module.subtitle |truncatehtml(30,' ...',false) }}</span> 
+          </div>
+        {% endif %}
+      </a>
+    </article>
+  
+  {% elif module.where_you_want_texts == 'OUT' %}
+  <article class="card-image right-corner-clip" style="{% if module.choose_background == 'BG-image' %} background-image: url({{ module.choose_background_image.src }});
+                                                       {% elif module.choose_background == 'BG-color' %} background-color:{{ module.choose_background_color.color }}; {% endif %}"> 
+    
+    <a href="{{ module.page_link }}">
+      {% if module.choose_background == "BG-color" %}
+        <div style="text-align:center;padding:37% 0;"> 
+            <img src="{{ module.background_icon.src }}" alt="{{ module.background_icon.alt }}" width="100px" height="100px">   
+        </div>
+      {% endif %}
+    </a>
+  </article>
+  
+  <a href="{{ module.page_link }}"> <h3 class="card-text" style="color:black; padding-left:0; margin-bottom:0; width:100%;">{{ module.heading_text }}</h3></a>
+    <div class="specific-button-with-icon" style="position:static;">
+        <p style="color:black;">{{ module.subtitle }}</p>
+    </div>
+  {% endif %}
+</section>
+
+<style>
+  {% if module.where_you_want_texts == 'OUT' %}
+  .all-feature-portrait {
+    height:440px;
+    margin-bottom:0;
+  }
+  {% endif %}
+.all-feature-portrait {
+  width:100%;
+  height:300px;
+}
+
+.all-feature-portrait .right-corner-clip {
+  -webkit-clip-path: polygon(80% 0, 100% 40px, 100% 100%, 0 100%, 0 0);
+  clip-path: polygon(80% 0, 100% 40px, 100% 100%, 0 100%, 0 0);
+}
+
+/* -------------  BG image section  --------------- */
+.card-image {
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+
+.all-feature-portrait .card-image {
+  width:100%;
+  height:300px;
+}
+
+.all-feature-portrait .card-text {
+  padding-top: 20px;
+  padding-left: 15px;
+  width:80%;
+  line-height:32px;
+}
+
+/*----------------- read more button style --------------*/
+.all-feature-portrait .specific-button-with-icon{
+  position:relative;
+  top: 140px;
+  left:12px;
+  width: calc(100% - 30px);
+}
+
+.all-feature-portrait .specific-button-with-icon span:after{
+  content:' ►';
+}
+
+@media (max-width:767px){
+  .all-feature-portrait{
+    margin: 30px auto;
+    width:220px;
+    float: none;
+  }
+}
+</style>

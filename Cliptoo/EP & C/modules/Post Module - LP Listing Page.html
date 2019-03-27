@@ -1,0 +1,34 @@
+﻿<div class="latest-blog-container">
+  {% for item in module.LP_Block %}
+  <a href="{{ item.link_url }}">
+    <div class="blog-post blog-post-{{ loop.index }} {%for cat in item.filter%}{{cat~" "}}{%endfor%}  {% if loop.index % 9 == 1 or loop.index % 9 == 2 or loop.index % 9 == 3 or loop.index % 9 == 6 or loop.index % 9 == 0 %} potrait {% elif loop.index % 9 == 4 or loop.index % 9 == 5 %} landscape {% elif loop.index % 9 == 7 or loop.index % 9 == 8 %} landscape-wider {% endif %}" style="background-position: center center;background-repeat: no-repeat; -webkit-background-size:cover; -moz-background-size:cover; background-size:cover; max-height:300px; position:relative;">
+      <div class="blog-heading-potrait">
+        <h3 style="color:{{ item.choose_the_color }};">{{ item.heading | truncatehtml(40,' ...',false) }}</h3>
+        <div class="specific-button-with-icon">
+          <span style="color:{{ item.choose_the_color }};">{{ item.link_text }}</span>
+        </div>
+      </div>
+    </div>
+  </a>  
+
+  {% endfor %}
+</div>
+
+
+{% for item in module.LP_Block %}
+ <style>
+    .blog-post-{{ loop.index }}:before{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-image: url({{ item.background_image.src }});
+      filter: brightness(0.7);
+      z-index: -1;
+    }
+  </style>
+{% endfor %}

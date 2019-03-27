@@ -1,0 +1,31 @@
+﻿<div class="video">
+  {{ module.video }}
+</div>
+
+<style>
+.video{
+  margin: 20px auto 0 auto;
+  width:700px;
+  float: none;
+}
+@media screen and (max-width:767px){
+  .video{
+    width:80%;
+    margin: 20px auto 0 auto;
+    float: none;
+  }
+}
+</style>
+
+<script>
+(function addposter() {
+      var video=document.getElementsByTagName("video");
+          video[0].setAttribute("poster", "{{ module.video_thumbnail_1.src }}"); 
+        {% if module.video_thumbnail_2.src %}
+          video[1].setAttribute("poster", "{{ module.video_thumbnail_2.src }}"); 
+        {% endif %}
+        {% if module.video_thumbnail_3.src %}
+          video[2].setAttribute("poster", "{{ module.video_thumbnail_3.src }}"); 
+        {% endif %}                         
+}());
+</script>

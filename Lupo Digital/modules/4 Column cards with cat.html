@@ -1,0 +1,77 @@
+﻿<div class="span3">
+<div class="card card-person">
+    {% if widget.image1.src %}
+    	<img class="card-img-top" src="{{ widget.image1.src }}" width="{{ widget.image1.width }}" height="{{ widget.image1.height }}" alt="{{ widget.image1.alt }}">
+    {% endif %}
+    <div class="card-body">
+        <h4 class="card-title">
+            {{ widget.name1 }}
+            <small class="card-descriptor">{{ widget.descriptor1 }}</small>
+        </h4>
+        {{ widget.content1 }}
+    </div>
+</div>
+</div>
+<div class="span3">
+<div class="card card-person">
+    {% if widget.image2.src %}
+    	<img class="card-img-top" src="{{ widget.image2.src }}" width="{{ widget.image2.width }}" height="{{ widget.image2.height }}" alt="{{ widget.image2.alt }}">
+    {% endif %}
+    <div class="card-body">
+        <h4 class="card-title">
+            {{ widget.name2 }}
+            <small class="card-descriptor">{{ widget.descriptor2 }}</small>
+        </h4>
+        {{ widget.content2 }}
+    </div>
+</div>
+</div>
+<div class="span3">
+<div class="card card-person">
+    {% if widget.image3.src %}
+    	<img class="card-img-top" src="{{ widget.image3.src }}" width="{{ widget.image3.width }}" height="{{ widget.image3.height }}" alt="{{ widget.image3.alt }}">
+    {% endif %}
+    <div class="card-body">
+        <h4 class="card-title">
+            {{ widget.name3 }}
+            <small class="card-descriptor">{{ widget.descriptor3 }}</small>
+        </h4>
+        {{ widget.content3 }}
+    </div>
+</div>
+</div>
+<div class="span3">
+<div class="card card-person">
+    {% if widget.image4.src %}
+    	<img class="card-img-top" src="{{ widget.image4.src }}" width="{{ widget.image4.width }}" height="{{ widget.image4.height }}" alt="{{ widget.image4.alt }}">
+    {% endif %}
+    <div class="card-body">
+        <h4 class="card-title">
+            {{ widget.name4 }}
+            <small class="card-descriptor">{{ widget.descriptor4 }}</small>
+        </h4>
+        {{ widget.content4 }}
+    </div>
+</div>
+</div>
+
+<style>
+.text{
+  margin-top: 20px;
+  text-align: center;
+}
+.img{
+  border-radius:50%;
+  margin-bottom:3%;
+}
+@media screen and (max-width:767px){
+.text{
+  width:99%;
+  margin:20px auto 0 auto;
+  }
+.img{
+  border-radius:50%;
+  margin-bottom:1%;
+  }
+}
+</style>

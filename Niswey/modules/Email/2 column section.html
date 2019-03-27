@@ -1,0 +1,27 @@
+﻿<table>
+      {% for item in module.blog_row %}
+  <tr>
+    <td width=600 class="grid" style="padding:0" dir="{{ item.text_image_orientation }}">
+      <table>
+        <tr>
+          <td valign=middle class="column" style="max-width:300px;padding:0" width="50%">
+            <div >
+              {% if item.image.src %}
+              <img src="{{ item.image.src }}" width="300" alt="{{ item.image.alt }}" style="vertical-align:top;">
+              {% endif %}
+            </div>
+          </td>
+          <td valign=middle class="column" style="max-width:300px;padding:0; background:{{ item.background_color.color }}" width="50%">
+            <div class="content">
+              {% inline_rich_text field="content" value="{{ item.content }}" %}
+              <p>
+                {% cta guid="{{ item.cta }}" %}
+              </p>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  {% endfor %}
+</table>

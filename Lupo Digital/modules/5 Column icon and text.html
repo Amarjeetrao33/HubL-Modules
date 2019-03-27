@@ -1,0 +1,63 @@
+﻿<div class="span1">
+</div>
+<div class="span2">
+ <div class="text-icon">
+  {% if module.icon1.src %}
+	<img src="{{ module.icon1.src }}" alt="{{ module.icon1.alt }}" width="80px" height="auto">
+{% endif %}
+  {{ module.text1 }}
+ </div>
+</div>
+<div class="span2">
+ <div class="text-icon">
+  {% if module.icon2.src %}
+	<img src="{{ module.icon2.src }}" alt="{{ module.icon2.alt }}" width="80px" height="auto">
+{% endif %}
+  {{ module.text2 }}
+ </div>
+</div>
+<div class="span2">
+ <div class="text-icon">
+  {% if module.icon3.src %}
+	<img src="{{ module.icon3.src }}" alt="{{ module.icon3.alt }}" width="80px" height="auto">
+{% endif %}
+  {{ module.text3 }}
+ </div>
+</div>
+<div class="span2">
+ <div class="text-icon">
+  {% if module.icon4.src %}
+	<img src="{{ module.icon4.src }}" alt="{{ module.icon4.alt }}" width="80px" height="auto">
+{% endif %}
+  {{ module.text4 }}
+ </div>
+</div>
+<div class="span2">
+ <div class="text-icon">
+  {% if module.icon5.src %}
+	<img src="{{ module.icon5.src }}" alt="{{ module.icon5.alt }}" width="80px" height="auto">
+{% endif %}
+  {{ module.text5 }}
+ </div>
+</div>
+<div class="span1">
+</div>
+
+<style>
+.text-icon{
+  margin-top: 20px;
+  text-align: center;
+}
+.text-icon img{
+  margin-bottom:3%;
+}
+@media screen and (max-width:767px){
+.text-icon{
+  width:99%;
+  margin:20px auto 0 auto;
+  }
+.text-icon img{
+  margin-bottom:1%;
+  }
+}
+</style>

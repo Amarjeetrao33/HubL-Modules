@@ -1,0 +1,27 @@
+﻿<h4>{{ content.blog_post_author.display_name }}</h4>
+<div class="author-sidebar-image">
+  <img src={{ content.blog_post_author.avatar }} width="100%" height="auto">
+</div>
+<div class="author-sidebar-bio">
+  <p>
+    {{ content.blog_post_author.bio }}
+  </p>
+</div>
+{% if content.blog_post_author.linkedin %}
+<div class="author-sidebar-linkedin">
+  <a href={{ content.blog_post_author.website }} target="_blank" ><img src="https://www.epc.nl/hubfs/Diamant_60px_zwart.png" width="20px" height="auto" hspace="5"></a>
+  <a href={{ content.blog_post_author.linkedin }} target="_blank" ><img src="https://www.epc.nl/hs-fs/hubfs/EPC-Nov18-images/Footer_Social%20Icons/linkedin.png" width="20px" height="auto" hspace="5"></a>
+
+</div>
+{% endif %}
+
+<style>
+.author-sidebar-image{
+  -webkit-clip-path: polygon(80% 0, 100% 15%, 100% 100%, 0 100%, 0 0);
+  clip-path: polygon(80% 0, 100% 15%, 100% 100%, 0 100%, 0 0);
+}
+
+.author-sidebar-bio{
+  text-transform: none;
+}
+</style>

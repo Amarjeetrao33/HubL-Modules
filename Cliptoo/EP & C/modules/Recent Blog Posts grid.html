@@ -1,0 +1,70 @@
+﻿{% set posts = blog_recent_posts( module.blog_post_id , 4) %}
+<div class="recent-blog-container" style="color: #fff;">
+  {% for post in posts %}
+  {% if loop.index < 3 %}
+  <div class="blog-row-1">
+    {% if loop.index is odd %}
+    <div class="blog-heading-background potrait" style="background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url({{ post.featured_image }});">
+      <a href="{{ post.absolute_url }}">
+        <div class="blog-heading-potrait">
+          <h3 style="color: #fff; min-height: 300px;">{{ post.name | truncatehtml(30,' ...',false) }}</h3>
+          <div class="specific-button-with-icon">
+            <span>{{ module.choose_language }}</span> 
+          </div>
+        </div>
+      </a>
+    </div>
+    {% else %}
+    <div class="blog-heading-background landscape-wider" style="background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url({{ post.featured_image }});">
+      <a href="{{ post.absolute_url }}">
+        <div class="blog-heading-wider">
+          <h3 style="color: #fff; min-height: 300px;">{{ post.name | truncatehtml(30,' ...',false) }}</h3>
+          <div class="specific-button-with-icon">
+            <span>{{ module.choose_language }}</span> 
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endif %}
+  </div>
+  {% else %}
+  <div class="blog-row-2">
+    {% if loop.index is odd %}
+    <div class="blog-heading-background landscape-wider" style="background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url({{ post.featured_image }});">
+      <a href="{{ post.absolute_url }}">
+        <div class="blog-heading-wider">
+          <h3 style="color: #fff; min-height: 300px;">{{ post.name | truncatehtml(30,' ...',false) }}</h3>
+          <div class="specific-button-with-icon">
+            <span>{{ module.choose_language }}</span> 
+          </div>
+        </div>
+      </a>
+    </div>
+    {% else %}
+    <div class="blog-heading-background potrait" style="background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url({{ post.featured_image }});">
+      <a href="{{ post.absolute_url }}">
+        <div class="blog-heading-potrait">
+          <h3 style="color: #fff; min-height: 300px;">{{ post.name | truncatehtml(30,' ...',false) }}</h3>
+          <div class="specific-button-with-icon">
+            <span>{{ module.choose_language }}</span> 
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+  {% endfor %}
+</div>
+<style>
+  .blog-heading-background{
+    background-size:cover;
+    background-repeat:no-repeat;
+    max-height:300px;
+    margin-right:unset;
+    position:relative;
+  }
+  .recent-blog-container span, .blog-heading-potrait h3, .blog-heading-wider h3 {
+    color:{{ module.choose_the_color }};
+  }
+</style>

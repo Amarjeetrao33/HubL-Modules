@@ -1,0 +1,48 @@
+﻿<div class="specialisation">
+{% if module.image_field.src %}
+	<img src="{{ module.image_field.src }}" alt="{{ module.image_field.alt }}" width="100%" height="auto">
+{% endif %}
+  <a class="specialisation-button" href="{{ module.button_url }}">{{ module.title }}</a>
+</div>
+
+<style>
+.specialisation{
+  margin-top: 20px;
+}
+.specialisation img{
+	margin-bottom:1.5%;
+}
+.specialisation-button {
+  font-size: 18px;
+  background: #0bc0d3;
+  color: #fff;
+  border: 1px solid #0bc0d3;
+  padding: 10px 0px;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+.specialisation-button:hover {
+  background: #fff;
+  color: #0bc0d3;
+}
+@media (min-width: 1280px){
+.specialisation-button {
+  font-size: 15px;
+  }
+}
+@media screen and (max-width: 767px){
+.specialisation {
+  width: 60%;
+  margin: 20px auto 0 auto;
+  float: none;
+  }
+  .specialisation-button {
+  font-size: 15px;
+  }
+  .specialisation-button:hover {
+  background: #0bc0d3;
+  color: #fff;
+}
+}
+</style>

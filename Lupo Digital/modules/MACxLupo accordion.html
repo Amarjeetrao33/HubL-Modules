@@ -1,0 +1,84 @@
+﻿<div class="accordion">
+ <div class="accordion-section">
+ <a class="accordion-section-title" href="#accordion-1">What Makes AdvancedMD Different?</a>
+
+ <div id="accordion-1" class="accordion-section-content">
+
+ <p>Your Content Goes In Here</p>
+
+ </div><!--end .accordion-section-content-->
+ </div><!--end .accordion-section-->
+</div><!--end .accordion-->
+
+<style>
+.accordion, .accordion * {
+ -webkit-box-sizing:border-box; 
+ -moz-box-sizing:border-box; 
+ box-sizing:border-box;
+}
+ 
+.accordion {
+ overflow:hidden;
+ box-shadow:0px 1px 3px rgba(0,0,0,0.25);
+ border-radius:3px;
+ background:#f7f7f7;
+}
+ 
+/*----- Section Titles -----*/
+.accordion-section-title {
+ width:100%;
+ padding:15px;
+ display:inline-block;
+ border-bottom:1px solid #1a1a1a;
+ background:#8bc2ea;
+ transition:all linear 0.15s;
+ /* Type */
+ font-size:1.200em;
+ text-shadow:0px 1px 0px #1a1a1a;
+ color:#fff;
+ text-decoration:none;
+}
+ 
+.accordion-section-title.active, .accordion-section-title:hover {
+ background:#c8c8c8;
+ /* Type */
+ text-decoration:none;
+}
+ 
+.accordion-section:last-child .accordion-section-title {
+ border-bottom-color:white;
+ padding-bottom:2px;
+}
+ 
+/*----- Section Content -----*/
+.accordion-section-content {
+ padding:15px;
+ display:none;
+}
+</style>
+<script>
+$(document).ready(function() {
+function close_accordion_section() {
+$('.accordion .accordion-section-title').removeClass('active');
+$('.accordion .accordion-section-content').slideUp(300).removeClass('open');
+}
+
+$('.accordion-section-title').click(function(e) {
+// Grab current anchor value
+var currentAttrValue = $(this).attr('href');
+
+if($(e.target).is('.active')) {
+close_accordion_section();
+}else {
+close_accordion_section();
+
+// Add active class to section title
+$(this).addClass('active');
+// Open up the hidden content panel
+$('.accordion ' + currentAttrValue).slideDown(300).addClass('open'); 
+}
+
+e.preventDefault();
+});
+});
+</script>

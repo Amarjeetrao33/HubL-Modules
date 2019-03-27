@@ -1,0 +1,94 @@
+﻿<section class="case-study-uk">
+  <div class="case-study-container">
+    <a class="items" href="{{ module.item_1_link }}">
+      <div class="items-background" style="background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url({{ module.image_1.src }});">
+        {% inline_rich_text field="item_content_1" value="{{ module.item_content_1 }}" %}
+      </div>
+    </a>
+    <a class="items" href="{{ module.item_2_link }}" style="margin-bottom:5px">
+      <div class="items-background" style="background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url({{ module.image_2.src }});">
+        {% inline_rich_text field="item_content_2" value="{{ module.item_content_2 }}" %}
+      </div>
+    </a>
+    <a class="items" href="{{ module.item_3_link }}">
+      <div class="items-background" style="background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url({{ module.image_3.src }});">
+        {% inline_rich_text field="item_content_3" value="{{ module.item_content_3 }}" %}
+      </div>
+    </a>
+  </div>
+</section>
+<style>
+.case-study-container {
+  width:100%;
+  display:-ms-grid;
+  display:grid;
+  -ms-grid-columns: 1fr 10px 1fr;
+  grid-template-columns: 1fr 1fr;
+}
+
+.case-study-container > .items:first-child{
+  grid-row: 1/3;
+}
+
+.case-study-container > .items > .items-background {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.case-study-container .items-background {
+  display:-webkit-box;
+  display:-ms-flexbox;
+  display:flex;
+  -webkit-box-align:center;
+  -ms-flex-align:center;
+  align-items:center;
+  padding:35px 20px 26px 20px;
+  height:100%;
+}
+
+.case-study-container .items {
+  margin:3px;
+  margin-top:0;
+}
+.case-study-container .items:first-child {
+  margin-left:0;
+}
+.case-study-container h2,
+.case-study-container h3 {
+  color:white;
+}
+
+@media screen and (min-width:1200px) {
+
+  .case-study-container .items {
+    transition: 0.2s ease-in-out;
+  }
+  .case-study-container .items:hover {
+    transform:scale(1.02);
+    -webkit-box-shadow: 0 0 30px 1px rgba(0,0,0,0.2);
+    box-shadow: 0 0 30px 1px rgba(0,0,0,0.2);
+  }
+
+  .case-study-container .items:hover h2,
+  .case-study-container .items:hover h3{
+    color:#f2a428;
+  }
+}
+
+@media screen and (max-width:1199px) {
+  .case-study-container .items-background{
+    padding:55.5px 20px;
+  }
+  .case-study-container .items {
+  }
+}
+
+@media screen and (max-width:767px) {
+  .case-study-container {
+    -ms-grid-columns: 1fr 10px;
+    grid-template-columns: 1fr;
+  }
+}
+
+</style>

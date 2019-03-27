@@ -1,0 +1,44 @@
+﻿<div class="span4">
+ <div class="text-icon">
+  {% if module.icon1.src %}
+	<img src="{{ module.icon1.src }}" alt="{{ module.icon1.alt }}" width="150px" height="auto">
+{% endif %}
+  {{ module.text1 }}
+ </div>
+</div>
+<div class="span4">
+ <div class="text-icon">
+  {% if module.icon2.src %}
+	<img src="{{ module.icon2.src }}" alt="{{ module.icon2.alt }}" width="150px" height="auto">
+{% endif %}
+  {{ module.text2 }}
+ </div>
+</div>
+<div class="span4">
+ <div class="text-icon">
+  {% if module.icon3.src %}
+	<img src="{{ module.icon3.src }}" alt="{{ module.icon3.alt }}" width="150px" height="auto">
+{% endif %}
+  {{ module.text3 }}
+ </div>
+</div>
+<style>
+.text-icon{
+  margin-top: 20px;
+  text-align: center;
+}
+.text-icon img{
+  border-radius:50%;
+  margin-bottom:3%;
+}
+@media screen and (max-width:767px){
+.text-icon{
+  width:99%;
+  margin:20px auto 0 auto;
+  }
+.text-icon img{
+  border-radius:50%;
+  margin-bottom:1%;
+  }
+}
+</style>

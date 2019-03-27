@@ -1,0 +1,250 @@
+﻿<div class="blog-section">
+  <div class="blog-listing-wrapper cell-wrapper">
+    {# simple_list_page indicates the "blog/all" page, which is a list of links to every blog post #}
+    <div class="post-listing{% if simple_list_page %}-simple{% endif %} blog-card-listing">
+      {% if blog_author %}
+      <div class="hs-author-profile">
+        <h2 class="hs-author-name">{{ blog_author.display_name }}</h2>
+        {% if blog_author.avatar %} <div class="hs-author-avatar"> <img src="{{ blog_author.avatar }}"> </div> {% endif %}
+        <div class="hs-author-bio">{{ blog_author.bio }}</div>
+        {% if blog_author.has_social_profiles %}
+        <div class="hs-author-social-section">
+          <span class="hs-author-social-label">Find me on:</span>
+          <div class="hs-author-social-links">
+            {% if blog_author.facebook %}
+            <a href="{{ blog_author.facebook }}" target="_blank" class="hs-author-social-link hs-social-facebook">&nbsp;</a>
+            {% endif %}
+            {% if blog_author.linkedin %}
+            <a href="{{ blog_author.linkedin }}" target="_blank" class="hs-author-social-link hs-social-linkedin">&nbsp;</a>
+            {% endif %}
+            {% if blog_author.twitter %}
+            <a href="{{ blog_author.twitter }}" target="_blank" class="hs-author-social-link hs-social-twitter">&nbsp;</a>
+            {% endif %}
+            {% if blog_author.google_plus %}
+            <a href="{{ blog_author.google_plus }}?rel=author" target="_blank" class="hs-author-social-link hs-social-google-plus">&nbsp;</a>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+      
+      <h3 class="hs-author-listing-header">Recent Posts</h3>
+      {% endif %}
+      
+      {% for content in contents %}
+<!--       <a class='art-link' href="{{content.absolute_url}}"  title=""> -->
+        <article id="blog-post" data-id="{{content.id}}" class="exist{{content.id}} {% for list_item in content.topic_list %}{{ list_item.name|lower|replace(' ','-') }} {% endfor %}"> 
+<!--           article start -->
+          <div class="card-item">
+            <div class="card-overlay" onclick="window.location.href='{{content.absolute_url}}'"> 
+<!--               overlay start -->
+              <h2 class="post-listing-simple"><a href="{{content.absolute_url}}">{{ content.name }}</a></h2>
+              <p class='meta_description'>
+                {{ content.meta_description|safe|truncatehtml(100) }} 
+              </p>
+              <span>
+                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="long-arrow-alt-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-long-arrow-alt-right fa-w-14 fa-5x"><path fill="currentColor" d="M340.485 366l99.03-99.029c4.686-4.686 4.686-12.284 0-16.971l-99.03-99.029c-7.56-7.56-20.485-2.206-20.485 8.485v71.03H12c-6.627 0-12 5.373-12 12v32c0 6.627 5.373 12 12 12h308v71.03c0 10.689 12.926 16.043 20.485 8.484z" class=""></path></svg>                               
+              </span>
+<!--               overlay end -->
+            </div>
+
+            {% if not simple_list_page %}
+            <div class="hs-featured-image-wrapper">
+              {% if content.post_list_summary_featured_image %}
+              <a title="" class="hs-featured-image-link">
+                <div class="hs-featured-image custom-background-property" style="background-image:url({{ content.post_list_summary_featured_image }}); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
+                <!-- <img src="{{ content.post_list_summary_featured_image }}" class="hs-featured-image"> -->
+              </a>
+              {% endif %}    
+            </div>
+
+            <div class="post-header">            
+              {% if content.topic_list %}
+              <div style="display: -webkit-box; display: -ms-flexbox; display: flex;-webkit-box-pack:justify; -ms-flex-pack:justify; justify-content:space-between;-webkit-box-align:center; -ms-flex-align:center; align-items:center;">
+                <div class="byline">
+                  {#   by
+                                <span class="author">
+                                    {{ content.blog_post_author.display_name }}
+                                </span>
+                             #}
+                  <span class="date">
+                    <i></i> {{ content.publish_date_localized|truncatehtml(15,'',false) }} {# {{ content.publish_date_local_time.strftime('%B') }} {{ content.publish_date_local_time.strftime('%m') }}, {{ content.publish_date_local_time.strftime('%Y') }} #}
+                  </span>
+
+                </div>
+                <p class="cat-title"> <i></i>
+                  <a class="topic-link">{{ content.blog_post_author.display_name }}</a>
+                </p>
+              </div>
+              {% endif %}
+
+              <h2 data-test='{{topic }}' data-topic='{{ content.topic_list[0]}}'><a href="{{content.absolute_url}}">{{ content.name }}</a></h2>
+
+              {#  {% if content_group.show_summary_in_listing %}
+                             <p>
+                                <a class="more-link" href="{{ content.absolute_url }}">Read More</a>     
+                             </p>
+                            {% endif %} #} 
+            </div>
+
+            {% else %}
+            <h2 class="post-listing-simple"><a href="{{content.absolute_url}}">{{ content.name }}</a></h2>
+            {% endif %}   
+          </div>
+        </article>
+<!--       </a> -->
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<script>
+  var empty = false;
+  var filters = [];
+  var fetching = false;
+  var blogOutOfPosts = false;
+  var found = [];
+  var pages = [];
+  $(".dom li").click(function(e) {
+    blogOutOfPosts = false;
+    fetching = false;
+    filters = [];
+    
+    e.preventDefault();
+    $(this).toggleClass('box-color');
+
+    var selected = $('.dom li.box-color');
+
+    if(selected.length == 0) {
+      $('article').fadeIn();
+    } else {
+      $('article').fadeOut();
+      selected.each(function() {
+          var filterClass = $(this).find('a').attr('href').replace('https://www.srijan.net/insights/tag/', '');
+          var checkEmpty = $("article."+filterClass);
+          
+          filters.push(filterClass);
+          if(pages[filterClass] == undefined) {
+              pages[filterClass] = 1;
+           }
+//           if(checkEmpty.length == 0) {
+//              fetchPosts();
+//           }
+          $("article."+filterClass).fadeIn();
+      });
+      fetchPosts("clicked");
+    }
+  });
+
+
+  
+  if(filters.length) {
+    var currentPage = 1; 
+  } else {
+    var currentPage = 2;
+  }
+
+  var postContainer = $(".post-listing");
+
+  function fetchPosts(method = null) {
+     // Set fetching to true to ensure that we pause the ajax
+      fetching = true;
+
+      if(filters.length) {
+        console.log('changed6');
+          filters.forEach(function(el) {
+              var ajaxUrl = window.location.href+"/tag/"+el+"/page/"+pages[el];
+
+              $.get(ajaxUrl, function(data) {
+                  console.log(ajaxUrl);
+                  // Create a jQuery element of the response
+                  var page = $(data);
+
+                  // Extract the blog posts
+                  var posts = page.find('#blog-post');
+
+                  posts.each(function() {
+                    var blogPost = $(this);
+                    var blogId = $(this).data('id');
+                    var checkExist = $(".post-listing .exist"+blogId);
+                    if(checkExist.length == 0) {
+                        if(method == 'clicked') {
+                            postContainer.prepend(blogPost);
+                        } else {
+                            postContainer.append(blogPost);
+                        }
+                      }
+                  });
+
+                  setTimeout(function(){
+                    pages[el] = pages[el]+1;
+                    fetching = false;
+                  }, 100);
+              });
+          });
+      } else {
+          var ajaxUrl = window.location.href+"/page/"+currentPage;
+        
+          console.log(ajaxUrl);
+          $.get(ajaxUrl, function(data) {
+              console.log(currentPage);
+              // Create a jQuery element of the response
+              var page = $(data);
+
+              // Extract the blog posts
+              var posts = page.find('#blog-post');
+
+              // There were no posts
+              if(posts.length == 0)
+              {
+                blogOutOfPosts = true;
+                return;
+              }
+
+              posts.each(function() {
+                var blogPost = $(this);
+                postContainer.append(blogPost);
+              });
+
+              setTimeout(function(){
+                currentPage += 1;
+                fetching = false;
+              }, 100);
+          });
+      }
+  }
+  
+  // We add an event listener for when the page is scrolled
+  $(window).scroll(function() {    
+    
+    // If we're out of posts or already fetching,
+    // escape this function and do nothing
+
+    if(blogOutOfPosts || fetching) {
+      console.log("Stopping Ajax");
+      return;
+    }
+
+    // The current offset scrolled from the top
+    var windowScroll = $(this).scrollTop();
+
+    // The browser window height
+    var windowHeight = $(this).height();
+
+    // The offset of the post container
+    var postContainerOffset = postContainer.offset().top;
+
+    // The height of the post container
+    var postContainerHeight = postContainer.height();
+
+    // This line is the bottom of the browser window when scrolled
+    var scrollLine = windowScroll + windowHeight;
+
+    // The bottom line of the blog listing
+    var scrollTarget = postContainerOffset + postContainerHeight;
+
+	  // If the scrolling line is bigger than the target
+	  if(scrollLine >= scrollTarget) {
+         fetchPosts();
+      }
+  });
+</script>

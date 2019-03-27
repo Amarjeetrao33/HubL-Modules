@@ -1,0 +1,118 @@
+﻿<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,700i,900" rel="stylesheet">
+<style type="text/css" data-hse-inline-css="true">
+  body,
+  table,
+  tr,
+  td,
+  div,
+  span {
+    font-family: 'Roboto', sans-serif;
+  } 
+  table {
+    border-collapse: separate;
+  }
+  a {
+    text-decoration: none;
+  }
+  a,
+  a:link,
+  a:visited {
+    text-decoration: none;
+    color: #666;
+  }
+  h2 a:hover,
+  h3 a:hover,
+  a:hover {
+    text-decoration: underline !important;
+  }
+  h2 a,
+  h2 a:visited,
+  h3 a,
+  h3 a:visited {
+    color: #f07a7a;
+  }
+  h1
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .t_cht {
+    color: #666 !important;
+  }
+  .ExternalClass p,
+  .ExternalClass span,
+  .ExternalClass font,
+  .ExternalClass td {
+    line-height: 100%;
+  }
+  .ExternalClass {
+    width: 100%;
+  }
+  img {
+    width:100% !important;
+    max-width:100% !important;
+  }
+  #contentTableOuter {
+    background-color:#284d8d;
+    background-color:transparent;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#284d8d), color-stop(#266ca9), color-stop(#2f8cc1), color-stop(#45acd7), to(#64ccea));
+    background-image: -webkit-linear-gradient(top, #284d8d, #266ca9, #2f8cc1, #45acd7, #64ccea);
+    background-image: -o-linear-gradient(top, #284d8d, #266ca9, #2f8cc1, #45acd7, #64ccea);
+    background-image: linear-gradient(to bottom, #284d8d, #266ca9, #2f8cc1, #45acd7, #64ccea);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#284d8d', endColorstr='#64ccea', GradientType=0);
+  }
+  body #contentTableOuter, td#contentCell {
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    border-bottom: none !important;
+  }
+  #footerTable {
+    min-height: 250px !important;
+    background-color:white;
+  }
+ .logo img {
+    max-width: 150px !important;
+  }
+  .ExternalClass {width: 100%;}
+  
+  @media only screen and (min-width:768px) {
+
+    .mobile-text h2,
+    .mobile-text h1,
+    .mobile-text h3,
+    .mobile-text h4 {
+      text-align:right !important;
+    }
+  }
+  @media only screen and (max-width: 480px){
+    td#bodyCell {
+      padding: 0 !important;
+    }
+
+    .small-screen {
+      display:block !important;
+      visibility:visible;
+    }
+
+    .inner-text,
+    td.columnContent {
+      padding:30px 15px !important;
+    }
+
+    td.article.column {
+      padding: unset !important;
+      margin:auto !important;
+      margin-top:15px !important;
+      margin-bottom:15px !important;
+      width:90% !important;
+    }
+
+    .mobile-text td.columnContent,
+    .head-content .inner-text {
+      padding-bottom:0 !important;
+      padding-top:0 !important;
+    }
+  }
+</style>

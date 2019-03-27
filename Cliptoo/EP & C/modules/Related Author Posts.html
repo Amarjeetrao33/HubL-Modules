@@ -1,0 +1,26 @@
+﻿{% set author_posts = blog_recent_author_posts('4189249682', content.blog_post_author.slug, 3) %}
+<div class="latest-blog-container">
+  {% for author_post in author_posts %}
+  <div class="potrait latest-blog__post-container" style="background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url({{ author_post.featured_image }});">
+    <a href="{{author_post.absolute_url}}">
+      <div class="blog-heading-potrait">
+        <h3 style="color:#fff; min-height: 300px;">
+          {{ author_post.name|truncatehtml(30, '...', false)}}
+        </h3>
+        <div class="specific-button-with-icon" style="color: #fff;"><span>Read More</span></div>
+      </div>
+    </a>
+  </div>
+  <div style="background-image: url({{ author_post.featured_image }}); background-position: center; background-repeat: no-repeat; background-size: cover;">    
+  </div>
+  {% endfor %}
+</div>
+
+<style>
+  .latest-blog__post-container{
+    background-color:{{ module.choose_the_background_color }};
+  }
+  .latest-blog-container span{
+    color:#fff;
+  }
+</style>

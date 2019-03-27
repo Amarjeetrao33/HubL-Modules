@@ -1,0 +1,18 @@
+﻿<div class="span4">  
+  {% if module.image_field.src %}
+	<img src="{{ module.image_field.src }}" alt="{{ module.image_field.alt }}" width="100%" height="auto">
+{% endif %}
+</div>
+<div class="span8 text">
+   {% inline_rich_text field="text" value="{{ module.text }}" %}
+</div>
+<style>
+  .text {
+  padding-top: {{ module.text_top_padding }}px;
+  }
+  @media screen and (max-width:767px){
+.text {
+  padding-top: 0px !important;
+  }
+  }
+</style>

@@ -1,0 +1,44 @@
+﻿<div class="centered span2">
+  {% if module.image_1.src %}
+	<img src="{{ module.image_1.src }}" alt="{{ module.image_1.alt }}" width="100%" height="auto">
+{% endif %}
+</div>
+<div class="centered span2">
+  {% if module.image_2.src %}
+	<img src="{{ module.image_2.src }}" alt="{{ module.image_2.alt }}" width="100%" height="auto">
+{% endif %}
+</div>
+<div class="centered span2">
+  {% if module.image_3.src %}
+	<img src="{{ module.image_3.src }}" alt="{{ module.image_3.alt }}" width="100%" height="auto">
+{% endif %}
+</div>
+<div class="centered span2">
+  {% if module.image_4.src %}
+	<img src="{{ module.image_4.src }}" alt="{{ module.image_4.alt }}" width="100%" height="auto">
+{% endif %}
+</div>
+<div class="centered span2">
+  {% if module.image_5.src %}
+	<img src="{{ module.image_5.src }}" alt="{{ module.image_5.alt }}" width="100%" height="auto">
+{% endif %}
+</div>
+<div class="centered span2">
+  {% if module.image_6.src %}
+	<img src="{{ module.image_6.src }}" alt="{{ module.image_6.alt }}" width="100%" height="auto">
+{% endif %}
+</div>
+<style>
+.centered{
+	text-align:center;
+  margin-top: 20px;
+  padding-top:25px;
+}
+@media screen and (max-width:767px){
+.centered{
+  width: 60% !important;
+  margin: 20px auto 0 auto !important;
+  float: none !important;
+  }
+}
+</style>

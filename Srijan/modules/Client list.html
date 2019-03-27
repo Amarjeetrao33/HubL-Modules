@@ -1,0 +1,63 @@
+﻿<section class="client-list">
+  <ul class="list-parent">
+    {% for item in module.clients %}
+    {% if item.client_logo.src %}
+    <li class="list-item">
+      <a href="{{ item.clients_url_link }}">
+        <img src="{{ item.client_logo.src }}" alt="{{ item.client_logo.alt }}" width="{{ module.logo_size }}" height="{{ module.logo_size }}">
+      </a>
+    </li>
+    {% endif %}
+    {% endfor %}
+  </ul>
+</section>
+<style>
+.client-list .list-parent{
+  width:100%;
+  padding:0;
+  margin:0;
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:-ms-flexbox;
+  display:flex;
+  -webkit-flex-wrap:wrap;
+  -ms-flex-wrap:wrap;
+  flex-wrap:wrap;
+  -webkit-box-pack:center;
+  -webkit-justify-content:center;
+  -ms-flex-pack:center;
+  justify-content:center;
+}
+
+.client-list .list-parent .list-item {
+  list-style:none;
+  padding:30px 20px;
+  padding-top:0;
+  margin-bottom:30px;
+}
+
+.list-parent .list-item img{
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  opacity: 0.8;
+  transition:0.2s ease-in-out;
+}
+
+.list-parent .list-item:hover {
+  cursor:pointer;
+}
+
+.list-parent .list-item:hover img{
+  -webkit-filter: grayscale(0);
+  filter: grayscale(0);
+  opacity: 1;
+}
+@media screen and (max-width:960px) {
+
+  .client-list .list-parent .list-item {
+    display: inline-block;
+    width: 50%;
+    text-align:center;
+  }
+}
+</style>
