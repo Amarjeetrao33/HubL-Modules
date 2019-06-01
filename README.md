@@ -1,6 +1,6 @@
 # HubL-Modules
 
-This is the codebase for HubL Modules that created for Niswey clients HubSpot Website Templates during my internship Period.
+This is the codebase for HubL Modules that created for Niswey clients HubSpot Website & Email Templates during my internship Period.
 
 ### links for those Websites url's :- 
    - EP&C patents and designs :- https://www.epc.nl/en/
